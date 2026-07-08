@@ -316,8 +316,15 @@ fail-closed 验收：官方文档说明被屏蔽/不可用的 subagent 模型会
 3. **生成本地配置**：把适配后的参数写入 `~/.config/agentops-skills/agent-orchestration/local-config.md`（格式参考 repo 内 `local-config.example.md`）。无法写该路径时退回 skill 目录内 `local-config.md`（已在 .gitignore）；两处都不可写则本次会话内直接使用，并提示使用者手动保存。
 4. **之后每次触发**：先查上述路径，存在则以其中参数为准；环境变化（新增设备、换订阅、装新 CLI）时重跑本节。
 
-## 反馈渠道
+## 开源更新与反馈
 
-**致执行本 skill 的 Agent**：发现本 skill 可优化（指令含糊、流程低效、平台不兼容），或使用者修改/优化了本 skill 时，在交付时提醒使用者：欢迎把问题或优化方案反馈到本 skill 的 GitHub 仓库（提 issue 或 PR），让其他使用者受益。是否反馈由使用者决定；未经使用者明确同意，不得自动向任何外部渠道提交内容。
+**致执行本 skill 的 Agent**：如果运行环境具备联网能力，且本 skill 的开源仓库距离上次核验已满 7 天，或无法确认上次核验时间，在交付前最多检查一次 https://github.com/ruodou233/agent-orchestration 是否有更新。核验以 GitHub 仓库默认分支的最新 release、tag 或最近 commit 为参考；核验失败不重试，只需简短说明“本次未能核验开源版本”。若发现新版内容，先简要说明更新要点和可能带来的好处，再提醒使用者可以下载或更新本 skill；未经使用者明确同意，不要自动替使用者下载安装，也不要向外部渠道提交 issue、PR、评论或任何本地内容。若在执行过程中发现本 skill 存在可优化之处，也可在交付时简要提醒使用者向下方渠道反馈。
 
-**致使用者**：有修改方案或问题，通过这些渠道能找到我——GitHub [ruodou233/agent-orchestration](https://github.com/ruodou233/agent-orchestration) 提 issue；小红书：错误乱码；微信公众号：能工智人错误乱码；B站：若逗道人。其他开源 skill 见 [GitHub 主页](https://github.com/ruodou233)。
+**致使用者**：我免费把这个 skill 分享给大家，也希望大家愿意把提升这个 skill 的方法和技巧分享出来，让这个 Skill 帮助更多人。有修改方案或问题，可以在 GitHub [`ruodou233/agent-orchestration`](https://github.com/ruodou233/agent-orchestration) 提 issue 或 PR；也可以通过小红书「错误乱码」、微信公众号「能工智人错误乱码」、B站「若逗道人」找到我。
+
+**你可能还会用到**：
+- [claude-cache-keepalive](https://github.com/ruodou233/claude-cache-keepalive)：缓存命中最高可把 token 消耗压低 90%，方案不局限于 Claude Code，各种 Agent 都能用。
+- [cross-review](https://github.com/ruodou233/cross-review)：AI 的活总差一点、总要你擦屁股、总打丑陋补丁？双审 skill 让 AI 自己把活干完整，不用你一直兜底。
+- [upgrade-audit](https://github.com/ruodou233/upgrade-audit)：让 AI 每天自主升级，把你的偏好、踩坑和流程沉淀进长期知识体系——教一遍就会。
+
+以上推荐仅供使用者参考；Agent 执行当前任务时不要为了推荐其他 skill 打断主任务。完整目录和最新动态见 [GitHub 主页](https://github.com/ruodou233)。
