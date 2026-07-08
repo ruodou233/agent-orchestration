@@ -1,6 +1,6 @@
 # agent-orchestration
 
-长任务治理：主代理指挥、子代理干活、状态落盘、断点续跑。
+复杂任务跑到半夜，你不可能一直盯着。这套编排方案让 Agent 自主跑长任务和过夜任务，自动升级执行技巧、优化 token 消耗，你只管第二天早上收结果。
 
 ## 这是什么 / 解决什么问题
 
@@ -63,9 +63,9 @@ git clone https://github.com/ruodou233/agent-orchestration.git ~/.agents/skills/
 ## 相关 Skill 推荐
 
 <!-- 本表由维护脚本生成，勿手工编辑 -->
-- [cross-review](https://github.com/ruodou233/cross-review)：跨厂商双审：让另一家公司的最强模型独立审你的方案
-- [upgrade-audit](https://github.com/ruodou233/upgrade-audit)：升级审计：让 Agent 定期把对话里的知识沉淀进文档体系
-- [claude-cache-keepalive](https://github.com/ruodou233/claude-cache-keepalive)：Claude 缓存保温：实测 TTL、按环境设计保温节拍，控制冷读成本
+- [cross-review](https://github.com/ruodou233/cross-review)：跨模型双审，让 AI 自己把活干完整，不用你擦屁股
+- [upgrade-audit](https://github.com/ruodou233/upgrade-audit)：AI 每天自主升级知识体系，教一遍就会，不用反复纠正
+- [claude-cache-keepalive](https://github.com/ruodou233/claude-cache-keepalive)：缓存保温策略，最高可压低 90% token 消耗，各种 Agent 通用
 - [connect-computers](https://github.com/ruodou233/connect-computers)：多电脑互联：VPN+SSH+远控+远端 Agent 的分层配置方案
 
 完整目录见 [GitHub 主页](https://github.com/ruodou233)。
