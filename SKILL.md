@@ -256,8 +256,7 @@ Codex 可使用本地 `overnight-task` 作为执行适配器。执行前应先�
 
 Codex 的子代理可用于上下文密集型扫描和分析。主代理保留调度、整合和最终决策。
 
-工人模型/effort（token 充裕侧默认强档）：token 充裕 → 工人默认强档（型号/effort 以当前 `~/.codex/config.toml` 与 agent-memory.md（作者私有文档）平台映射为准），一般不为省 token 降 model；只有低价值批处理、或延迟/吞吐/可用性约束明确时才降。每次 `codex exec` 显式传参、无会话继承；按难度主要调 effort：`codex exec -c 'model_reasoning_effort="<档>"'`。预设档可建 `$CODEX_HOME/<profile>.config.toml` 后用 `-p <profile>`（当前未配置）。自动化中用绝对路径或 `CODEX_BIN`，勿假设 `codex` 在 PATH。Codex 侧无逐回合 hook 接口（AGENTS.md 为行为约定非确定性机制），确定性流程合规走共用脚本（automations/compliance/compliance-check.sh check，收尾前运行）（作者私有脚本，不随包发布；确定性合规检查思路可由你的 Agent 生成等价物）+ 每日审计兜底。
-
+工人模型/effort（token 充裕侧默认强档）：token 充裕 → 工人默认强档（型号/effort 以当前 `~/.codex/config.toml` 与 agent-memory.md（作者私有文档）平台映射为准），一般不为省 token 降 model；只有低价值批处理、或延迟/吞吐/可用性约束明确时才降。每次 `codex exec` 显式传参、无会话继承；按难度主要调 effort：`codex exec -c 'model_reasoning_effort="<档>"'`。预设档可建 `$CODEX_HOME/<profile>.config.toml` 后用 `-p <profile>`（当前未配置）。自动化中用绝对路径或 `CODEX_BIN`，勿假设 `codex` 在 PATH。
 ### Claude Code
 
 Claude Code 可使用 subagent、hook、命令或本地 CLI 实现同一套治理方法。
