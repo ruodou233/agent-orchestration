@@ -18,8 +18,8 @@
 | multi_platform_worker_policy | 执行工人放 token 充裕侧 | 多平台时，把自包含、可验证、重消耗任务放到更适合批量执行的一侧 |
 | convergence_policy | 收敛位留主平台 | 聚合、验收、终审默认由主平台或当前可用强档完成 |
 | default_fanout | 2-4 | 超过该范围时说明独立性和合并策略 |
-| state_workspace | workspace/ | 每次长任务可在项目内新建独立工作区 |
-| handoff_threshold | 接近上下文上限或阶段切换时 | 生成 handoff 并给出状态文件路径 |
+| deliverable | 任务自己的研究报告、裁决稿或项目文档 | 目标、进度和取舍写在这里 |
+| handoff_threshold | 接近上下文上限或阶段切换时 | 把方案摘要、当前决策、未决项和下一步写进交付物 |
 
 ## 只读探测记录
 
@@ -36,5 +36,5 @@
 |---|---|---|
 | max_parallel_workers | 3 | 单次任务最大并发工人数 |
 | max_retries_per_method | 2 | 同一方法失败达到该次数后换方法或降级 |
-| require_independent_review | true | 交付前是否强制独立验收 |
+| require_independent_review | true | 高风险块与最终交付是否强制独立验收 |
 | external_side_effects_allowed | false | 默认不允许外部副作用，除非使用者明确授权 |
