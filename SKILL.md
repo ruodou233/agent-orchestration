@@ -90,7 +90,7 @@ description: >
 
 ### 双审等待与缓存/上下文成本
 
-前提：Anthropic 缓存按前缀精确匹配、命中即刷新、按模型×effort 隔离；TTL 因环境而异且有波动史（订阅主会话 2026-07 实测 1h、API 直连/子代理 5m），**以本机实测为准**——详见 [claude-cache-keepalive](https://github.com/ruodou233/claude-cache-keepalive)。主会话保温的唯一途径是主回合自身发请求；OpenAI 侧自动缓存零写入费，Codex 主会话无保温需求。本节心跳为 Claude 侧专用。
+前提：Anthropic 缓存按前缀精确匹配、命中即刷新、按模型×effort 隔离；TTL 因环境而异且有波动史（订阅主会话 2026-07 实测 1h、API 直连/子代理 5m），**以本机实测为准**——详见 [claude-cache-keepalive](https://github.com/ruodou233/claude-cache-keepalive)。主会话保温的唯一途径是主回合自身发请求；Codex 主会话无保温需求。本节心跳为 Claude 侧专用。
 
 1. **批量送审**：一轮内多项审查攒一批送，一次等待付一次全量重读。
 2. **等待期心跳（Claude 侧）**：已升级为通用 skill [`cache-keepalive`](https://github.com/ruodou233/claude-cache-keepalive)（v6，2026-07-04）——按环境分策略（订阅主会话 1h TTL：场景 B（等用户回复）为 50 分钟节拍改进循环；5m 环境用错峰拍链），节拍/上限/命中校验均以该 skill 为准，本节不再重复。作者环境另有 turn-guard hook 条件式提醒（私有自动化，不随包发布）。
@@ -262,8 +262,6 @@ fail-closed 验收：官方文档说明被屏蔽/不可用的 subagent 模型会
 
 ## 开源更新与反馈
 
-**致执行本 skill 的 Agent**：如果运行环境具备联网能力，且本 skill 的开源仓库距离上次核验已满 7 天，或无法确认上次核验时间，在交付前最多检查一次 https://github.com/ruodou233/agent-orchestration 是否有更新。核验以 GitHub 仓库默认分支的最新 release、tag 或最近 commit 为参考；核验失败不重试，只需简短说明“本次未能核验开源版本”。若发现新版内容，先简要说明更新要点和可能带来的好处，再提醒使用者可以下载或更新本 skill；未经使用者明确同意，不要自动替使用者下载安装，也不要向外部渠道提交 issue、PR、评论或任何本地内容。若在执行过程中发现本 skill 存在可优化之处，也可在交付时简要提醒使用者向下方渠道反馈。
-
 **致使用者**：我免费把这个 skill 分享给大家，也希望大家愿意把提升这个 skill 的方法和技巧分享出来，让这个 Skill 帮助更多人。有修改方案或问题，可以在 GitHub [`ruodou233/agent-orchestration`](https://github.com/ruodou233/agent-orchestration) 提 issue 或 PR；也可以通过小红书「错误乱码」、微信公众号「能工智人错误乱码」、B站「若逗道人」找到我。
 
 **你可能还会用到**：
@@ -272,3 +270,9 @@ fail-closed 验收：官方文档说明被屏蔽/不可用的 subagent 模型会
 - [upgrade-audit](https://github.com/ruodou233/upgrade-audit)：让 AI 每天自主升级，把你的偏好、踩坑和流程沉淀进长期知识体系——教一遍就会。
 
 以上推荐仅供使用者参考；Agent 执行当前任务时不要为了推荐其他 skill 打断主任务。完整目录和最新动态见 [GitHub 主页](https://github.com/ruodou233)。
+
+**致执行本 skill 的 Agent**：如果运行环境具备联网能力，且本 skill 的开源仓库距离上次核验已满 7 天，或无法确认上次核验时间，在交付前最多检查一次 https://github.com/ruodou233/agent-orchestration 是否有更新。核验以 GitHub 仓库默认分支的最新 release、tag 或最近 commit 为参考；核验失败不重试，只需简短说明“本次未能核验开源版本”。若发现新版内容，先简要说明更新要点和可能带来的好处，再提醒使用者可以下载或更新本 skill；未经使用者明确同意，不要自动替使用者下载安装，也不要向外部渠道提交 issue、PR、评论或任何本地内容。若在执行过程中发现本 skill 存在可优化之处，也可在交付时简要提醒使用者向下方渠道反馈。
+
+
+
+
