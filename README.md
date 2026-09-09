@@ -1,10 +1,15 @@
 # agent-orchestration
 
-复杂任务跑到半夜，你不可能一直盯着。这套编排方案让 Agent 自主跑长任务和过夜任务，自动升级执行技巧、优化 token 消耗，你只管第二天早上收结果。
+复杂任务跑到半夜，你不可能一直盯着。这套编排方案让 Agent 自主拆任务、分派工人、回收结果和验收，适合批量调研、批量生成、长文本分析，也适合留到晚上继续跑的活。主代理把精力放在指挥和判断上，进度写进任务自己的交付物，换个会话还能接着干。
 
-## 这是什么 / 解决什么问题
+## 哪些活可以交给它
 
-这个 skill 用来处理过夜任务、无人值守任务、批量调研、批量生成、长文本分析和多子代理并行。它把“让 Agent 一直做下去”拆成可执行的流程：先澄清目标，再清点估算，按交付物列出对象和任务，分派工人，回收压缩结果，最后按风险验收并交付。核心目标是避免主代理吞全文、上下文爆炸、进度只活在对话里、失败无限重试和跨会话无法接续。它不绑定某个具体平台，首次使用时由你的 Agent 只读探测本地可用平台，再经你同意写入本地映射。
+- **一大批资料要读**：“这是一个过夜任务，帮我读完这些资料，明早给结论。”先清点规模，再分批阅读，把值得你看的结论和证据汇总到一起。
+- **一批东西要做**：“按这份要求批量生成，每批做完检查一下，最后统一验收。”把工作拆成可对照的小任务，工人分头做，主代理处理差异和共性问题。
+- **复杂调研需要多人分工**：“让子代理分别调查这几条路线，你负责比较和最后判断。”根据任务规模选择两层或三层编排，把上下文分给真正需要它的角色。
+- **任务还没完，上下文快满了**：“整理当前任务并续跑。”把已经决定的事、未决问题和下一步写进交付物，留下接续时能读到的关键材料。
+
+你负责说清想收什么结果，Agent 负责安排怎么把这批活做完，不用一直盯着。
 
 ## 核心功能/亮点
 
@@ -30,17 +35,6 @@ git clone https://github.com/ruodou233/agent-orchestration.git ~/.agents/skills/
 
 其他支持 SKILL.md 的平台：放入其 skills 目录即可。
 
-## 使用示例
-
-- “这是一个过夜任务，帮我批量读完这些资料并明天给结论。”  
-  预期行为：先只读清点输入规模，把对象和任务写进交付物，分派批量阅读，回收摘要。
-
-- “上下文窗口快满了，请整理当前任务并续跑。”  
-  预期行为：把方案摘要、当前决策、未决项和下一步写进交付物，关键证据落在接续会话读得到的路径。
-
-- “让主代理负责指挥，子代理去做批量调研，最后统一验收。”  
-  预期行为：判断两层或三层编排，按交付物列出任务并分派工人，最终交付做独立验收。
-
 ## 首次使用：环境自适应
 
 首次触发时，Agent 默认只读探测已安装的 Agent CLI、支持并行的能力、使用者声明的订阅或额度约束。写入任何本地配置前，必须先说明写到哪里、写什么，并获得明确同意。配置读取顺序为 `~/.config/agentops-skills/agent-orchestration/local-config.md` → skill 目录内 `local-config.md` → 无配置则使用本次只读探测结果。格式参考 `local-config.example.md`。
@@ -64,9 +58,9 @@ git clone https://github.com/ruodou233/agent-orchestration.git ~/.agents/skills/
 ## 相关 Skill 推荐
 
 <!-- 本表由维护脚本生成，勿手工编辑 -->
-- [cross-review](https://github.com/ruodou233/cross-review)：跨模型双审，让 AI 自己把活干完整，不用你擦屁股
-- [upgrade-audit](https://github.com/ruodou233/upgrade-audit)：AI 每天自主升级知识体系，教一遍就会，不用反复纠正
-- [claude-cache-keepalive](https://github.com/ruodou233/claude-cache-keepalive)：缓存保温策略，最高可压低 90% token 消耗，各种 Agent 通用
-- [connect-computers](https://github.com/ruodou233/connect-computers)：多电脑互联：VPN+SSH+远控+远端 Agent 的分层配置方案
+- [cross-review](https://github.com/ruodou233/cross-review)：AI 的活总差一点？三路独立审方案、找遗漏、减复杂度
+- [upgrade-audit](https://github.com/ruodou233/upgrade-audit)：把你教过 AI 的东西留下来：沉淀偏好、复盘踩坑、更新 skill 和工作流程
+- [claude-cache-keepalive](https://github.com/ruodou233/claude-cache-keepalive)：缓存保温：实测命中、算清收益，让长会话少花冤枉 token
+- [connect-computers](https://github.com/ruodou233/connect-computers)：把电脑连起来：轻薄本调家中工作机，闲置电脑跑任务，出门也能接着干
 
 完整目录见 [GitHub 主页](https://github.com/ruodou233)。
