@@ -1,4 +1,6 @@
-# agent-orchestration
+# 多智能体任务编排｜Multi-Agent Orchestration
+
+Coordinate AI agents for long-running tasks, parallel work, and overnight workflows.
 
 复杂任务跑到半夜，你不可能一直盯着。这套编排方案让 Agent 分工跑长任务和过夜任务：批量调研、读长文、做产物，都可以安排好接着干，你只管第二天早上收结果。主代理负责指挥和判断，进度写进任务自己的交付物，换个会话还能接着干。
 
@@ -58,9 +60,9 @@ git clone https://github.com/ruodou233/agent-orchestration.git ~/.agents/skills/
 ## 相关 Skill 推荐
 
 <!-- 本表由维护脚本生成，勿手工编辑 -->
-- [cross-review](https://github.com/ruodou233/cross-review)：AI 的活总差一点，总要你擦屁股，总打丑补丁？让另一家 AI 挑刺复查，自己把活干完整，不用你一直兜底。
-- [upgrade-audit](https://github.com/ruodou233/upgrade-audit)：把你教过 AI 的东西留下来：沉淀偏好、复盘踩坑、更新 skill 和工作流程
-- [claude-cache-keepalive](https://github.com/ruodou233/claude-cache-keepalive)：缓存保温：实测命中、算清收益，让长会话少花冤枉 token
-- [connect-computers](https://github.com/ruodou233/connect-computers)：把电脑连起来：轻薄本调家中工作机，闲置电脑跑任务，出门也能接着干
+- [cross-review](https://github.com/ruodou233/cross-review)：AI 的活总差一点，总要你擦屁股，总打丑补丁？让另一家 AI 挑刺复查，自己把活干完整，不用你一直兜底。<br>An agent skill for independent code and design reviews across AI providers, checking correctness, complexity, and better approaches.
+- [upgrade-audit](https://github.com/ruodou233/upgrade-audit)：把你教过 AI 的东西留下来：沉淀偏好、复盘踩坑、更新 skill 和工作流程<br>Review conversation history, agent memory, and skills to identify reusable lessons and propose updates to outdated instructions.
+- [claude-cache-keepalive](https://github.com/ruodou233/claude-cache-keepalive)：缓存保温：实测命中、算清收益，让长会话少花冤枉 token<br>Measure prompt cache hits and costs, then configure automatic keepalive when the savings justify it.
+- [connect-computers](https://github.com/ruodou233/connect-computers)：把电脑连起来：轻薄本调家中工作机，闲置电脑跑任务，出门也能接着干<br>Set up SSH, VPN, remote desktop access, and remote AI agents across your computers for work at home and on the go.
 
 完整目录见 [GitHub 主页](https://github.com/ruodou233)。
