@@ -13,6 +13,10 @@ Coordinate AI agents for long-running tasks, parallel work, and overnight workfl
 
 你负责说清想收什么结果，Agent 负责安排怎么把这批活做完，不用一直盯着。
 
+## 为什么默认两层
+
+我们把一个月的 Codex 会话（392 个日志文件、15 个本机案例）拆开看了看：本机没有一例真三层成功，成败分界是分批回收与产物落盘；翻了 15 个外部来源，没有任何一个给出三层优于两层的数字。[完整研究与数据](research/2026-09-delegation-study.md)
+
 ## 核心功能/亮点
 
 - 适配过夜、无人值守、批量扫描、批量生成、长对话分析等高上下文任务。
@@ -45,6 +49,7 @@ git clone https://github.com/ruodou233/agent-orchestration.git ~/.agents/skills/
 
 | 时间 | 变更 |
 |---|---|
+| 2026-09-14 | 默认两层、委派按条件判断、状态落盘为硬要求；附[一手数据研究](research/2026-09-delegation-study.md) |
 | 2026-08-26 | 进度写进任务交付物；中间块按风险验收 |
 | 2026-07 | 首次开源发布 |
 
