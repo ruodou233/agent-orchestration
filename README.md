@@ -19,7 +19,7 @@ Coordinate AI agents for long-running tasks, parallel work, and overnight workfl
 
 保护主代理的上下文干净、全局思路清晰，不光效果和体验更好，也省下大量返工。我们把一个月的 Codex 会话（392 个日志文件、15 个本机案例）拆开看了看：返工是首次交付的 6～52 倍，子代理的总消耗还不到主会话的六成；数据证明，比起子代理的 token 消耗，主代理上下文污染、反复返工消耗的 token 才最严重。两层足够，没有一例真三层成功。[完整研究与数据](research/2026-09-delegation-study.md)
 
-这套分工我从 2026 年 5 月的第一版过夜任务 skill 就开始做，和 Anthropic、Google、DeepSeek 后来公开的思路不谋而合；2026-11 对照他们的方案和本机 30 天数据又做了一轮取舍。[时间线与对照](research/2026-11-context-delegation.md)
+这套分工我从 2026 年 5 月的第一版过夜任务 skill 就开始做，和 Anthropic、Google、DeepSeek 最近公开的思路不谋而合；2026-11 对照他们的方案和本机 30 天数据又做了一轮取舍。[时间线与对照](research/2026-11-context-delegation.md)
 
 ## 核心功能/亮点
 

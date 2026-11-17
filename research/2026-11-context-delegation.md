@@ -38,13 +38,13 @@
 
 | 来源 | 日期 | 要点 |
 |---|---|---|
-| Google ADK：[Architecting efficient context-aware multi-agent framework](https://developers.googleblog.com/architecting-efficient-context-aware-multi-agent-framework-for-production/) | 2025-12-04 | 上下文分层，子代理默认按最小范围拿上下文，大块内容用引用代替全文 |
-| Google Antigravity：[造操作系统](https://antigravity.google/blog/google-antigravity-built-an-os)、[子代理](https://antigravity.google/docs/subagents)、[/teamwork](https://antigravity.google/docs/teamwork) | 2026-05-19 起 | 子代理不继承父代理的对话历史；协调者在里程碑之间把状态写进交接文件，换全新继任者接着做 |
 | DeepSeek Harness：[等子代理时结束本轮](https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/bug-fix/2026-10-21-subagent-end-turn-guidance.md) | 2026-10-21 | 受控 A/B：写明「只剩等结果时结束本轮」后，空等的 sleep 从 29/300 降到 0/300 |
 | Anthropic：[When to fold subagents into your main agent loop](https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop) | 2026-10-22 | 按上下文依赖切分，不按角色切分；切出去的活应几乎不需要其余信息、能交回紧凑结果 |
 | DeepSeek Harness：Super-agent 设计（[原文](https://mp.weixin.qq.com/s/zoS7GlReWPhfCjENGxXCdg)、[原型仓](https://github.com/deepseek-ai/dsh-superagent-prototype)） | 2026-10-31 | 主会话只路由、工人隔离上下文执行；转发用户原话，概括只作导读 |
 | Anthropic：[Which Claude model should you build with?](https://claude.dev/blog/which-claude-model-should-you-build-with/) | 2026-11-09 | 强模型领队、便宜模型并行读取，在一个约 2,200 万 token 的检索基准上得分相当、成本少约三分之一 |
+| Google：[Agent Distraction](https://developers.googleblog.com/agent-distraction/) | 2026-11-06 | Google 内部数百万次会话：代理读到过时的 TODO 会被带偏，相关会话步数多约 70%、token 多约 77% |
 | Google：[Gemini 4 Hydrogen in Antigravity](https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity) | 2026-11-12 | 强模型规划、快模型执行、卡住交回 |
+| Google Research：[Antigravity 的 /teamwork](https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/) | 2026-11-13 | 多日任务里注意力会随上下文窗口变长而分散，所以每个专门代理只拿它需要的文件和工具；协调者在里程碑之间写交接文件，换全新继任者接着做 |
 | Anthropic：[Claude Code best practices](https://code.claude.com/docs/en/best-practices)「What you can stop doing」 | 2026-11 当前版 | 「用子代理保护上下文窗口」已不必要；子代理的价值在并行、挡住冗长输出、要一个没看过推理过程的审查者 |
 
 ## 对照
@@ -62,7 +62,11 @@
 
 **这次删掉的**：三层指挥官、模型钉版、缓存保温、失败熔断、新会话恢复包等，正文从 22KB 减到 11KB。模型越强，需要的束缚越少。
 
-## 本机 30 天数据（2026-10-18～11-17，Claude Code 63 个会话）
+## 数据
+
+9 月研究归因的 39 条返工里，近半（49%）是「设计与执行未拆开」：规划和执行堆在同一个主会话里互相干扰，这正是主代理上下文被污染的表现。
+
+本机 30 天（2026-10-18～11-17，Claude Code 63 个会话）：
 
 - 自动压缩 0 次，压缩后也没有「你忘了」一类的纠正：主会话跑在约 1M 窗口上，窗口本身不是瓶颈。
 - 子代理回传中位 1.4k 字，没有一条把大段原文灌回主会话：「只回结论」已经落地。
