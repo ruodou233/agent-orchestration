@@ -45,14 +45,11 @@ git clone https://github.com/ruodou233/agent-orchestration.git ~/.agents/skills/
 
 其他支持 SKILL.md 的平台：放入其 skills 目录即可。
 
-## 首次使用：环境自适应
-
-首次触发时，Agent 默认只读探测已安装的 Agent CLI、支持并行的能力、使用者声明的订阅或额度约束。写入任何本地配置前，必须先说明写到哪里、写什么，并获得明确同意。配置读取顺序为 `~/.config/agentops-skills/agent-orchestration/local-config.md` → skill 目录内 `local-config.md` → 无配置则使用本次只读探测结果。格式参考 `local-config.example.md`。
-
 ## Changelog
 
 | 时间 | 变更 |
 |---|---|
+| 2026-11-20 | 删掉与正文相反的首次使用配置和更新检查 |
 | 2026-11-17 | 按作者现行版本重写：去掉三层指挥官、跨平台默认派工、模型钉版与缓存保温等已退役内容；补平台自带长任务机制、只读采集降档、Codex 工人默认不继承整段历史 |
 | 2026-09-14 | 默认两层、委派按条件判断、状态落盘为硬要求；附[一手数据研究](research/2026-09-delegation-study.md) |
 | 2026-08-26 | 进度写进任务交付物；中间块按风险验收 |
@@ -69,7 +66,6 @@ git clone https://github.com/ruodou233/agent-orchestration.git ~/.agents/skills/
 
 ## 相关 Skill 推荐
 
-<!-- 本表由维护脚本生成，勿手工编辑 -->
 - [cross-review](https://github.com/ruodou233/cross-review)：AI 的活总差一点，总要你擦屁股，总打丑补丁？让另一家 AI 挑刺复查，自己把活干完整，不用你一直兜底。<br>An agent skill for independent code and design reviews across AI providers, checking correctness, complexity, and better approaches.
 - [upgrade-audit](https://github.com/ruodou233/upgrade-audit)：把你教过 AI 的东西留下来：沉淀偏好、复盘踩坑、更新 skill 和工作流程<br>Review conversation history, agent memory, and skills to identify reusable lessons and propose updates to outdated instructions.
 - [claude-cache-keepalive](https://github.com/ruodou233/claude-cache-keepalive)：缓存保温：实测命中、算清收益，让长会话少花冤枉 token<br>Measure prompt cache hits and costs, then configure automatic keepalive when the savings justify it.
